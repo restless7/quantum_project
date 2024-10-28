@@ -1,75 +1,58 @@
-# quantum_project
-Quantum state analysis and transformation toolkit using ComplexTensor
+# Quantum Data Analysis Tool
 
 A Python toolkit for quantum state analysis and transformation using ComplexTensor.
 
 ## Features
+
 - Quantum state data reading and validation
-- Complex quantum transformations (Hadamard, Pauli-X, Pauli-Z)
+- Complex quantum transformations
 - Visualization of quantum states
 - Comprehensive unit testing suite
+- Support for multiple quantum gates (Hadamard, Pauli-X, Pauli-Z)
 
 ## Installation
 
 ```bash
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# Windows:
-.\venv\Scripts\Activate
-# Linux/Mac:
-source venv/bin/activate
-
-# Install requirements
 pip install -r requirements.txt
-pip install -e .
 ```
 
-## Usage
+## Quick Start
 
-Basic example:
 ```python
 from src.quantum_processor import QuantumProcessor
-from src.visualization import QuantumVisualizer
+from src.data_handler import DataHandler
 
-# Initialize components
+# Load and process quantum data
+data_handler = DataHandler()
+quantum_data = data_handler.load_data("data/sample_quantum_states.json")
+
+# Create quantum processor
 processor = QuantumProcessor()
-visualizer = QuantumVisualizer()
-
-# Create quantum state
-data = {
-    "wavefunction": {
-        "real": [1.0, 0.0],
-        "imaginary": [0.0, 0.0]
-    }
-}
+state = processor.create_state(quantum_data)
 
 # Apply transformations
-state = processor.create_state(data)
-processor.apply_hadamard()
-processor.apply_pauli_x()
-
-# Visualize results
-visualizer.plot_transformation_sequence(processor.get_state_history())
+transformed_state = processor.apply_hadamard(state)
 ```
 
-## Project Structure
-```
-quantum_project/
-├── src/               # Source code
-├── tests/             # Unit tests
-├── examples/          # Usage examples
-└── data/             # Sample data files
-```
+## Testing
 
-## Running Tests
+Run the test suite:
+
 ```bash
 python -m pytest tests/
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Project Structure
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+- `src/`: Source code
+- `tests/`: Unit tests
+- `examples/`: Usage examples
+- `data/`: Sample data files
+
+## Requirements
+
+- Python 3.8+
+- ComplexTensor
+- PyTorch
+- NumPy
+- Matplotlib
